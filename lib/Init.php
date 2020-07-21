@@ -65,22 +65,9 @@ define("SYSTEM_ERROR_MENU", "common");
  */
 define("SYSTEM_ERROR_ACT", "error");
 /**
- * Logined Cookie keys
+ * Access key file
  */
-define("LOGINED_COOKIE_KEY", "D5832206-C345-2FBE-A737-A8BF29E22AB0");
-/**
- * 本地访问允许IP列表
- */
-define("LOCAL_ALLOW_ADDRESS", serialize(array(
-    "127.0.0.1",
-    "172.23.3.149"
-)));
-/**
- * 首页访问允许IP列表
- */
-define("LOCAL_UNALLOW_ADDRESS", serialize(array(
-    "172.23.3.149"
-)));
+//require_once SRC_PATH . "/driver/AccessInit.php";
 // +------------------------------------
 // | 画面
 // +------------------------------------
@@ -170,13 +157,17 @@ define("MAIL_TPL_RESET_PASSWORD", '<p>尊敬的用户:</p><p>您的重置登录�
  * 找回密码邮件模版
  */
 define("MAIL_TPL_GETBACK_PASSWORD", '<p>尊敬的用户:</p><p>您的找回登录密码验证码为</p><h1 style="color:#FF6600;">%s</h1><p>请在5分钟内按页面提示提交验证码</p><p>切勿将验证码泄露于他人</p>');
-/**
- * Access key file
- */
-//require_once SRC_PATH . "/driver/token/Init2.php";
 // +------------------------------------
 // | GLOBAL KEY
 // +------------------------------------
+/**
+ * Session login key
+ */
+define("SESSION_LOGIN_KEY", "A7020C73-E017-F66D-7703-3F7FC5F0C11D");
+/**
+ * Cookie login key
+ */
+define("COOKIE_LOGIN_KEY", "8961754D-EF97-45BF-052C-3E9DF1AE058A");
 /**
  * 登录跳转全局主键
  */
