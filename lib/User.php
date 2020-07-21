@@ -58,6 +58,19 @@ class User
     }
 
     /**
+     * 用户登出
+     */
+    public function setLogout()
+    {
+        if ($this->hasParameter(COOKIE_LOGIN_KEY)) {
+            $this->freeParameter(COOKIE_LOGIN_KEY);
+        }
+        if ($this->hasVariable(SESSION_LOGIN_KEY)) {
+            $this->freeVariable(SESSION_LOGIN_KEY);
+        }
+    }
+
+    /**
      * 检测用户是否登陆
      * 
      * @return boolean
@@ -76,7 +89,7 @@ class User
     /**
      * 获取用户登录信息
      * 
-     * @return LoginedUserBean
+     * @return Ioh\Library\Bean\LoginedUserBean
      */
     public function getLoginInfo()
     {
