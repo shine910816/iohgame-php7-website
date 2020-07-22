@@ -1,6 +1,8 @@
 <?php
 namespace Ioh\Library;
 
+use Ioh\Library\Error;
+
 /**
  * 核心控制器
  * @author Kinsama
@@ -9,36 +11,7 @@ namespace Ioh\Library;
 class Controller
 {
     /**
-     * 转向目标menu
-     */
-    public $forward_menu;
-
-    /**
-     * 转向目标act
-     */
-    public $forward_act;
-
-    /**
-     * 转向目标flag
-     */
-    public $forward_flg = false;
-
-    /**
-     * 设置画面转向
-     *
-     * @param string $menu menu名
-     * @param string $act act名
-     */
-    public function forward($menu, $act)
-    {
-        $this->forward_menu = $menu;
-        $this->forward_act = $act;
-        $this->forward_flg = true;
-    }
-
-    /**
      * 画面URL跳转
-     *
      * @param string $url 目标URL
      */
     public function redirect($url = "")
@@ -62,7 +35,6 @@ class Controller
 
     /**
      * 判断对象是否为错误对象
-     *
      * @param object $obj 判断对象
      * @return boolean
      */

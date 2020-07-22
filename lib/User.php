@@ -72,7 +72,6 @@ class User
 
     /**
      * 检测用户是否登陆
-     * 
      * @return boolean
      */
     public function isLogin()
@@ -88,7 +87,6 @@ class User
 
     /**
      * 获取用户登录信息
-     * 
      * @return Ioh\Library\Bean\LoginedUserBean
      */
     public function getLoginInfo()
@@ -126,7 +124,6 @@ class User
 
     /**
      * 获取用户登录IP地址
-     * 
      * @return string
      */
     public function getRemoteAddr()
@@ -208,7 +205,6 @@ class User
 
     /**
      * 获取全部SESSION值
-     * 
      * @return array
      */
     public function getVariables()
@@ -218,7 +214,6 @@ class User
 
     /**
      * 释放SESSION值
-     * 
      * @param string $name SESSION名数组(索引序列)
      * @return array
      */
@@ -229,7 +224,6 @@ class User
 
     /**
      * 设置COOKIE值
-     * 
      * @param string $name COOKIE键
      * @param string $value COOKIE值
      * @param integer $expire COOKIE有效时间（单位为秒）
@@ -242,7 +236,6 @@ class User
 
     /**
      * 释放COOKIE值
-     * 
      * @param string $name COOKIE名数组(索引序列)
      * @return array
      */
@@ -253,7 +246,6 @@ class User
 
     /**
      * 根据COOKIE名判断COOKIE是否存在
-     * 
      * @param string $name COOKIE名
      * @return boolean
      */
@@ -264,7 +256,6 @@ class User
 
     /**
      * 根据COOKIE名获取COOKIE值
-     * 
      * @param string $name COOKIE名
      * @return mixed
      */
@@ -278,7 +269,6 @@ class User
 
     /**
      * 获取本类实例化对象
-     * 
      * @return object
      */
     public static function getInstance()

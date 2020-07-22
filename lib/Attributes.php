@@ -1,0 +1,73 @@
+<?php
+namespace Ioh\Library;
+
+class Attributes
+{
+    /**
+     * ¿ô¿øÎó
+     * @access private
+     */
+    private $_attributes = array();
+
+    /**
+     * &#35774;ÃÖ¿ô¿ø
+     * @param string $name ¿ô¿øÌ¾
+     * @param mixed $value ¿ô¿ø&#20540;
+     */
+    public function setAttribute($name, $value)
+    {
+        $this->_attributes[$name] = $value;
+        return;
+    }
+
+    /**
+     * ÈãÎÌ&#35774;ÃÖ¿ô¿ø
+     * @param array $value ¿ô¿ø¿ô&#32452;
+     */
+    public function setAttributes($values)
+    {
+        if (!is_array($value)) {
+            return;
+        }
+        foreach ($values as $tmp_key => $tmp_value) {
+            $this->_attributes[$tmp_key] = $tmp_value;
+        }
+        return;
+    }
+
+    /**
+     * È½ÃÇ¿ô¿øÀ§ÈÝÂ¸ºß
+     * @param string $name ¿ô¿øÌ¾
+     * @return boolean
+     */
+    public function hasAttribute($name)
+    {
+        if (!isset($this->_attributes[$name])) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * &#33719;¼è¿ô¿ø
+     * @param string $name ¿ô¿øÌ¾
+     * @return mixed
+     */
+    public function getAttribute($name)
+    {
+        if (!$this->hasAttribute($name)) {
+            return null;
+        }
+        return $this->_attribute[$name];
+    }
+
+    /**
+     * &#33719;¼èÁ´Éô¿ô¿øÎó
+     * @return array
+     */
+    public function getAttributes()
+    {
+        return $this->_attribute;
+    }
+}
+?>
