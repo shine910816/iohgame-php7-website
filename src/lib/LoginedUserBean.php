@@ -1,6 +1,4 @@
 <?php
-namespace Ioh\Library\Bean;
-
 /**
  * 用户登录信息
  */

@@ -1,8 +1,4 @@
 <?php
-namespace Ioh\Library;
-
-use Ioh\Library\Bean\LoginedUserBean;
-
 /**
  * 用户控制器
  * @author Kinsama
@@ -87,7 +83,7 @@ class User
 
     /**
      * 获取用户登录信息
-     * @return Ioh\Library\Bean\LoginedUserBean
+     * @return LoginedUserBean
      */
     public function getLoginInfo()
     {
@@ -144,7 +140,6 @@ class User
 
     /**
      * 批量设置SESSION
-     * 
      * @param array $value SESSION名与值
      */
     public function setVariables($value)
@@ -159,7 +154,6 @@ class User
 
     /**
      * 根据SESSION名判断SESSION是否存在
-     * 
      * @param string $name SESSION名
      * @return boolean
      */
@@ -170,7 +164,6 @@ class User
 
     /**
      * 根据SESSION名获取SESSION值
-     * 
      * @param string $name SESSION名
      * @return mixed
      */
@@ -184,7 +177,6 @@ class User
 
     /**
      * 根据多个SESSION名获取SESSION值
-     * 
      * @param array $names SESSION名数组(索引序列)
      * @return mixed
      */

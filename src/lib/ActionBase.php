@@ -1,19 +1,17 @@
 <?php
-namespace Ioh\Library;
-
 /**
  * Action基类
  */
-class ActionBase
+abstract class ActionBase
 {
-    public function doMainValidate()
+    public function doMainExecute(Controller $controller, User $user, Request $request)
     {
-        return null;
+        return VIEW_NONE;
     }
 
-    public function doMainExecute()
+    public function doMainValidate(Controller $controller, User $user, Request $request)
     {
-        return null;
+        return VIEW_NONE;
     }
 }
 ?>

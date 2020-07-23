@@ -37,9 +37,9 @@ define("SYSTEM_DEFAULT_MENU", "common");
  */
 define("SYSTEM_DEFAULT_ACT", "home");
 /**
- * API默认MENU
+ * 系统默认ACT
  */
-define("SYSTEM_DEFAULT_API_MENU", "usr_api");
+define("SYSTEM_DEFAULT_TOKEN", "938AF062-9B89-9A41-0AAB-E58283847B4E");
 /**
  * 首页显示项目最大条数
  */
@@ -67,6 +67,7 @@ define("SYSTEM_ERROR_ACT", "error");
 /**
  * Access key file
  */
+// TODO
 //require_once SRC_PATH . "/driver/AccessInit.php";
 // +------------------------------------
 // | 画面
@@ -180,59 +181,4 @@ define("USER_CHANGE_NICK", "C5FCD6C9-25D4-52B4-84C6-6874EFFDFC85");
  * 找回密码全局主键
  */
 define("USER_GETBACK_PASSWORD", "BD36CE3D-2374-2FC5-1892-9B993650EB18");
-// +------------------------------------
-// | 错误代码
-// +------------------------------------
-/**
- * 错误代码-默认
- */
-define("ERROR_CODE_DEFAULT", "1000");
-/**
- * 错误代码-ACTION文件不存在
- */
-define("ERROR_CODE_NONE_ACTION_FILE", "1001");
-/**
- * 错误代码-ACTION类不存在
- */
-define("ERROR_CODE_NONE_ACTION_CLASS", "1002");
-/**
- * 错误代码-TPL文件不存在
- */
-define("ERROR_CODE_NONE_TPL_FILE", "1003");
-/**
- * 错误代码-数据库参数
- */
-define("ERROR_CODE_DATABASE_PARAM", "2001");
-/**
- * 错误代码-数据库结果
- */
-define("ERROR_CODE_DATABASE_RESULT", "2002");
-/**
- * 错误代码-数据库结果
- */
-define("ERROR_CODE_DATABASE_DISACCEPT", "2003");
-/**
- * 错误代码-用户窜改画面
- */
-define("ERROR_CODE_USER_FALSIFY", "3001");
-/**
- * 错误代码-外部画面POST
- */
-define("ERROR_CODE_OUTSIDE_FALSIFY", "3002");
-/**
- * 错误代码-用户窜改验证码
- */
-define("ERROR_CODE_VERIFY_FALSIFY", "3003");
-/**
- * 错误代码-用户API获取失败
- */
-define("ERROR_CODE_API_GET_FALSIFY", "4001");
-/**
- * 错误代码-用户API存在错误
- */
-define("ERROR_CODE_API_ERROR_FALSIFY", "4002");
-/**
- * 错误代码-第三方API存在错误
- */
-define("ERROR_CODE_THIRD_ERROR_FALSIFY", "5001");
 ?>

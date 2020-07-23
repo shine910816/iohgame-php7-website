@@ -1,15 +1,67 @@
 <?php
-namespace Ioh\Library;
+// +------------------------------------
+// | 错误代码
+// +------------------------------------
+/**
+ * 错误代码-默认
+ */
+define("ERROR_CODE_DEFAULT", "1000");
+/**
+ * 错误代码-ACTION文件不存在
+ */
+define("ERROR_CODE_NONE_ACTION_FILE", "1001");
+/**
+ * 错误代码-ACTION类不存在
+ */
+define("ERROR_CODE_NONE_ACTION_CLASS", "1002");
+/**
+ * 错误代码-TPL文件不存在
+ */
+define("ERROR_CODE_NONE_TPL_FILE", "1003");
+/**
+ * 错误代码-数据库参数
+ */
+define("ERROR_CODE_DATABASE_PARAM", "2001");
+/**
+ * 错误代码-数据库结果
+ */
+define("ERROR_CODE_DATABASE_RESULT", "2002");
+/**
+ * 错误代码-数据库结果
+ */
+define("ERROR_CODE_DATABASE_DISACCEPT", "2003");
+/**
+ * 错误代码-用户窜改画面
+ */
+define("ERROR_CODE_USER_FALSIFY", "3001");
+/**
+ * 错误代码-外部画面POST
+ */
+define("ERROR_CODE_OUTSIDE_FALSIFY", "3002");
+/**
+ * 错误代码-用户窜改验证码
+ */
+define("ERROR_CODE_VERIFY_FALSIFY", "3003");
+/**
+ * 错误代码-用户API获取失败
+ */
+define("ERROR_CODE_API_GET_FALSIFY", "4001");
+/**
+ * 错误代码-用户API存在错误
+ */
+define("ERROR_CODE_API_ERROR_FALSIFY", "4002");
+/**
+ * 错误代码-第三方API存在错误
+ */
+define("ERROR_CODE_THIRD_ERROR_FALSIFY", "5001");
 
 /**
  * 错误警报
- *
  * @author Kinsama
  * @version 2016-12-30
  */
-class Error
+class Report
 {
-
     /**
      * 错误信息
      */
@@ -78,7 +130,6 @@ class Error
 
     /**
      * 判断对象是否为错误对象
-     *
      * @param object $obj 判断对象
      * @return boolean
      */
@@ -87,7 +138,7 @@ class Error
         if (!is_object($obj)) {
             return false;
         }
-        if (!property_exists($obj, 'error_flg')) {
+        if (!property_exists($obj, "error_flg")) {
             return false;
         }
         if (!$obj->error_flg) {
@@ -128,7 +179,7 @@ class Error
      */
     public static function getInstance()
     {
-        return new Error();
+        return new Report();
     }
 }
 ?>

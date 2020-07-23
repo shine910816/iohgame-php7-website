@@ -1,14 +1,10 @@
 <?php
-namespace Ioh\Library;
-
-use Ioh\Library\Attributes;
-
 /**
  * 数据控制器
  * @author Kinsama
  * @version 2016-12-30
  */
-class Request extends Attributes
+class Request
 {
     /**
      * 页面menu
@@ -21,10 +17,20 @@ class Request extends Attributes
     public $current_act = SYSTEM_DEFAULT_ACT;
 
     /**
+     * 页面token
+     */
+    public $current_token = SYSTEM_DEFAULT_TOKEN;
+
+    /**
+     * 页面指向方式
+     */
+    private $_target_type = false;
+
+    /**
      * 页面参数
      * @access private
      */
-    private $_parameter;
+    private $_parameters;
 
     /**
      * 错误信息
@@ -33,20 +39,35 @@ class Request extends Attributes
     private $_error = array();
 
     /**
+     * 数据列
+     * @access private
+     */
+    private $_attributes = array();
+
+    /**
      * 初始化
      */
     public function __construct()
     {
-        $parameter = ($_SERVER['REQUEST_METHOD'] == 'POST') ? $_POST : $_GET;
-        // TODO
-        //if (isset($parameter['menu']) && isset($parameter['act'])) {
-        //    $this->current_menu = $parameter['menu'];
-        //    $this->current_act = $parameter['act'];
-        //} elseif (isset($_GET['menu']) && isset($_GET['act'])) {
-        //    $this->current_menu = $_GET['menu'];
-        //    $this->current_act = $_GET['act'];
-        //}
-        $this->_parameter = $parameter;
+        $this->_parameters = $_REQUEST;
+        if (isset($this->_parameters["t"])){
+            $this->_target_type = true;
+            $this->current_token = $this->_parameters["t"];
+            unset($this->_parameters["t"]);
+        } elseif (isset($this->_parameters["menu"]) && isset($this->_parameters["act"])) {
+            $this->current_menu = $this->_parameters["menu"];
+            $this->current_act = $this->_parameters["act"];
+            unset($this->_parameters["menu"]);
+            unset($this->_parameters["act"]);
+        }
+    }
+
+    /**
+     * 获取页面指向方式
+     */
+    public function getTargetType()
+    {
+        return $this->_target_type;
     }
 
     /**
@@ -57,7 +78,7 @@ class Request extends Attributes
      */
     public function hasParameter($name)
     {
-        return isset($this->_parameter[$name]);
+        return isset($this->_parameters[$name]);
     }
 
     /**
@@ -71,7 +92,7 @@ class Request extends Attributes
         if (!$this->hasParameter($name)) {
             return null;
         }
-        return $this->_parameter[$name];
+        return $this->_parameters[$name];
     }
 
     /**
@@ -81,7 +102,7 @@ class Request extends Attributes
      */
     public function getParameters()
     {
-        return $this->_parameter;
+        return $this->_parameters;
     }
 
     /**
@@ -130,6 +151,67 @@ class Request extends Attributes
     {
         $this->_error[$name] = $desc;
         return;
+    }
+
+    /**
+     * 设置数据
+     * @param string $name 数据名
+     * @param mixed $value 数据值
+     */
+    public function setAttribute($name, $value)
+    {
+        $this->_attributes[$name] = $value;
+        return;
+    }
+
+    /**
+     * 批量设置数据
+     * @param array $value 数据数组
+     */
+    public function setAttributes($values)
+    {
+        if (!is_array($value)) {
+            return;
+        }
+        foreach ($values as $tmp_key => $tmp_value) {
+            $this->_attributes[$tmp_key] = $tmp_value;
+        }
+        return;
+    }
+
+    /**
+     * 判断数据是否存在
+     * @param string $name 数据名
+     * @return boolean
+     */
+    public function hasAttribute($name)
+    {
+        if (!isset($this->_attributes[$name])) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 获取数据
+     * @param string $name 数据名
+     * @return mixed
+     */
+    public function getAttribute($name)
+    {
+        if (!$this->hasAttribute($name)) {
+            return null;
+        }
+        return $this->_attributes[$name];
+    }
+
+    /**
+     * 获取全部数据列
+     * @return array
+     */
+    public function getAttributes()
+    {
+        return $this->_attributes;
     }
 
     /**

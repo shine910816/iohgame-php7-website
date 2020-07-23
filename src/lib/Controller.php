@@ -1,8 +1,4 @@
 <?php
-namespace Ioh\Library;
-
-use Ioh\Library\Error;
-
 /**
  * 核心控制器
  * @author Kinsama
@@ -28,7 +24,7 @@ class Controller
      */
     public function raiseError($err_code = ERROR_CODE_DEFAULT, $err_msg = null)
     {
-        $error = Error::getInstance();
+        $error = Report::getInstance();
         $error->raiseError($err_code, $err_msg);
         return $error;
     }
