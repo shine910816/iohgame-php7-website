@@ -1,5 +1,4 @@
 <?php
-
 /**
  * 检测控制器
  * @author Kinsama
@@ -7,10 +6,8 @@
  */
 class Validate
 {
-
     /**
      * 检测值是否为empty(不全等)
-     *
      * @param mixed $value 待检测值
      * @return boolean
      */
@@ -21,7 +18,6 @@ class Validate
 
     /**
      * 检测值是否为null(全等)
-     *
      * @param mixed $value 待检测值
      * @return boolean
      */
@@ -46,7 +42,6 @@ class Validate
 
     /**
      * 检测全角值是否为null(全等)
-     *
      * @param mixed $value 待检测值
      * @return boolean
      */
@@ -71,7 +66,6 @@ class Validate
 
     /**
      * 检测值是否为半角数字
-     *
      * @param mixed $value 待检测值
      * @param array $opt 期待最小值最大值 'min' =>最小值(大于等于) 'max' =>最大值(小于等于)
      * @return boolean
@@ -103,7 +97,6 @@ class Validate
 
     /**
      * 检测值是否为十进制半角数字
-     *
      * @param mixed $value 待检测值
      * @param array $opt 期待最小值最大值 'min' =>最小值(大于等于) 'max' =>最大值(小于等于)
      * @return boolean
@@ -135,7 +128,6 @@ class Validate
 
     /**
      * 检测值是否为半角英文
-     *
      * @param mixed $value 待检测值
      * @return boolean
      */
@@ -160,7 +152,6 @@ class Validate
 
     /**
      * 检测值是否为半角英数字
-     *
      * @param mixed $value 待检测值
      * @return boolean
      */
@@ -185,7 +176,6 @@ class Validate
 
     /**
      * 检测值是否为全角汉字
-     *
      * @param mixed $value 待检测值
      * @return boolean
      */
@@ -210,7 +200,6 @@ class Validate
 
     /**
      * 检测值是否在指定文字数内
-     *
      * @param mixed $value 待检测值
      * @param array $opt 期待最小值最大值 'min_length' =>最小值(大于等于) 'max_length' =>最大值(小于等于)
      * @return boolean
@@ -248,7 +237,6 @@ class Validate
 
     /**
      * 检测值是否在指定全角文字数内
-     *
      * @param mixed $value 待检测值
      * @param array $opt 期待最小值最大值 'min_length' =>最小值(大于等于) 'max_length' =>最大值(小于等于)
      * @return boolean
@@ -286,7 +274,6 @@ class Validate
 
     /**
      * 检测日期是否正确
-     *
      * @param string $year 年
      * @param string $month 月
      * @param string $day 日
@@ -313,7 +300,6 @@ class Validate
 
     /**
      * 检测时间是否正确
-     *
      * @param string $hour 时
      * @param string $minute 分
      * @param string $second 秒
@@ -343,7 +329,6 @@ class Validate
 
     /**
      * 检测日期时间是否正确
-     *
      * @param string $year 年
      * @param string $month 月
      * @param string $day 日
@@ -364,7 +349,6 @@ class Validate
 
     /**
      * 检测IP地址是否正确
-     *
      * @param string $value IP地址
      * @return boolean
      */
@@ -384,7 +368,6 @@ class Validate
 
     /**
      * 检测电子邮箱地址是否正确
-     *
      * @param mixed $value 待检测值
      * @return boolean
      */
@@ -401,7 +384,6 @@ class Validate
 
     /**
      * 检测手机号码是否正确
-     *
      * @param mixed $value 待检测值
      * @return boolean
      */
@@ -410,7 +392,7 @@ class Validate
         if (is_null($value) || $value === '') {
             return true;
         }
-        if (!preg_match("/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/", $value)) {
+        if (!preg_match("/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|17[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/", $value)) {
             return false;
         }
         return true;
@@ -418,7 +400,6 @@ class Validate
 
     /**
      * 检测值在指定参数范围内
-     *
      * @param mixed $value 待检测值
      * @param array $accept 范围
      * @return boolean

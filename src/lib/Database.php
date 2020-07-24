@@ -1,5 +1,4 @@
 <?php
-
 /**
  * 数据库控制器
  * @author Kinsama
@@ -7,17 +6,14 @@
  */
 class Database
 {
-
     /**
      * 数据库连接标识
-     *
      * @access private
      */
     private $con;
 
     /**
      * 数据库文字编码
-     *
      * @access private
      */
     private $charset = 'utf8';
@@ -39,7 +35,6 @@ class Database
 
     /**
      * 插入数据
-     *
      * @param string $tableName 表名
      * @param array $insertData 数据
      * @return boolean
@@ -47,7 +42,7 @@ class Database
     public function insert($tableName, $insertData)
     {
         if (empty($tableName) || !is_array($insertData)) {
-            $error = Error::getInstance();
+            $error = Report::getInstance();
             $error->raiseError(ERROR_CODE_DATABASE_PARAM);
             $error->setPos(__FILE__, __LINE__);
             return $error;
@@ -71,7 +66,6 @@ class Database
 
     /**
      * 修改数据
-     *
      * @param string $tableName 表名
      * @param array $updateData 数据
      * @param string $where 条件
@@ -80,7 +74,7 @@ class Database
     public function update($tableName, $updateData, $where)
     {
         if ($tableName == null || !is_array($updateData) || $where == null) {
-            $error = Error::getInstance();
+            $error = Report::getInstance();
             $error->raiseError(ERROR_CODE_DATABASE_PARAM);
             $error->setPos(__FILE__, __LINE__);
             return $error;
@@ -97,7 +91,6 @@ class Database
 
     /**
      * 删除数据
-     *
      * @param string $tableName 表名
      * @param string $where 条件
      * @return boolean
@@ -105,7 +98,7 @@ class Database
     public function delete($tableName, $where)
     {
         if ($tableName == null || $where == null) {
-            $error = Error::getInstance();
+            $error = Report::getInstance();
             $error->raiseError(ERROR_CODE_DATABASE_PARAM);
             $error->setPos(__FILE__, __LINE__);
             return $error;
@@ -116,7 +109,6 @@ class Database
 
     /**
      * 查询数据
-     *
      * @param string $sql SQL语句
      * @return mixed
      */
@@ -130,7 +122,6 @@ class Database
 
     /**
      * 开始事件
-     *
      * @return mixed
      */
     public function begin()
@@ -140,7 +131,6 @@ class Database
 
     /**
      * 终止事件
-     *
      * @return mixed
      */
     public function rollback()
@@ -150,7 +140,6 @@ class Database
 
     /**
      * 提交事件
-     *
      * @return mixed
      */
     public function commit()
@@ -160,7 +149,6 @@ class Database
 
     /**
      * 为字符串或数组添加索引标识
-     *
      * @param string or array $value 字符串或数组
      * @param boolean $db_flg 数据库表名或字段名Flag
      * @return string or array
@@ -172,36 +160,16 @@ class Database
 
     /**
      * 判断对象是否为错误对象
-     *
      * @param object $obj 判断对象
      * @return boolean
      */
     public function isError($obj)
     {
-        return Error::isError($obj);
-    }
-
-    /**
-     * 查询符合条件的条目数
-     *
-     * @param string $tableName 表名
-     * @param string $where 条件
-     * @return boolean
-     */
-    public function check($tableName, $where)
-    {
-        if ($where == null || $tableName == null) {
-            return false;
-        }
-        $sql = sprintf("SELECT COUNT(*) FROM `%s` WHERE %s", $tableName, $where);
-        $result = $this->_query($sql);
-        $data = $result->fetch_row();
-        return $data[0];
+        return Report::isError($obj);
     }
 
     /**
      * 执行并记录SQL语句
-     *
      * @access private
      * @param string $sql SQL语句
      * @return object boolean
@@ -211,7 +179,7 @@ class Database
         $sql = trim($sql, ' ');
         $result = mysqli_query($this->con, $sql);
         if (!$result) {
-            $error = Error::getInstance();
+            $error = Report::getInstance();
             $error->raiseError(ERROR_CODE_DATABASE_RESULT, mysqli_error($this->con) . ", the sql text: " . $sql);
             return $error;
         }
@@ -234,37 +202,32 @@ class Database
 
     /**
      * 记录SQL语句
-     *
      * @access private
      * @param string $sql SQL语句
      */
     private function _logSqlText($sql)
     {
-        $file_path = SRC_PATH . "/temp/log";
-        if (!file_exists($file_path)) {
-            mkdir($file_path, 0777, true);
+        if (TEST_STATUS) {
+            $fo = fopen(SRC_PATH . "/temp/log/sqltext.log", "a");
+            $text = $sql . "\n";
+            fwrite($fo, $text);
+            fclose($fo);
         }
-        $fo = fopen($file_path . '/sqltext.log', "a");
-        $text = $sql . "\n";
-        fwrite($fo, $text);
-        fclose($fo);
-        return;
     }
 
     /**
      * 获取数据库链接
-     *
      * @return object
      */
     public static function getInstance()
     {
-        if (in_array($_SERVER['SERVER_ADDR'], unserialize(LOCAL_ALLOW_ADDRESS))) {
-            $dsn_name = 'local';
+        $dsn_info = array();
+        if  (TEST_STATUS) {
+            $dsn_info = unserialize(LOCAL_DATABASE_DSN);
         } else {
-            $dsn_name = 'server';
+            $dsn_info = unserialize(SERVER_DATABASE_DSN);
         }
-        $dsn_list = Config::getDataSourceName();
-        return new Database($dsn_list[$dsn_name]);
+        return new Database($dsn_info);
     }
 }
 ?>

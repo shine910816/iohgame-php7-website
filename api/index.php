@@ -7,7 +7,7 @@ echo json_encode(array(
     "datetime" => date("Y-m-d H:i:s"),
     "result" => array(
         "server_ver" => $_SERVER["SERVER_SOFTWARE"],
-        "user_agent" => isset($_SERVER["HTTP_USER_AGENT"]) ? $_SERVER["HTTP_USER_AGENT"] : "API CALLED",
+        "user_agent" => isset($_SERVER["HTTP_USER_AGENT"]) ? $_SERVER["HTTP_USER_AGENT"] : "",
         "remote" => $_SERVER["REMOTE_ADDR"]
     )
 ));

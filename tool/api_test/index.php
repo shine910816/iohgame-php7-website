@@ -24,8 +24,17 @@
     <pre><?php
     if (isset($_REQUEST["request_url"])) {
         $request_url = $_REQUEST["request_url"];
-        $api_content = file_get_contents($request_url);
-        print_r(json_decode($api_content, true));
+        $api_content = file_get_contents($_REQUEST["request_url"]);
+        $decode_content = json_decode($api_content, true);
+        if ($decode_content === false) {
+            echo $api_content;
+        } else {
+            if (!$decode_content["error_cd"]) {
+                print_r($decode_content["result"]);
+            } else {
+                printf("[%s]%s(%s)", $decode_content["datetime"], $decode_content["error_msg"], $decode_content["error_cd"]);
+            }
+        }
     }
 ?></pre>
   </div>
