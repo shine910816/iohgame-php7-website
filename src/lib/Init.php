@@ -67,8 +67,7 @@ define("SYSTEM_ERROR_ACT", "error");
 /**
  * Access key file
  */
-// TODO
-//require_once SRC_PATH . "/driver/AccessInit.php";
+require_once SRC_PATH . "/lib/Init2.php";
 // +------------------------------------
 // | 画面
 // +------------------------------------
