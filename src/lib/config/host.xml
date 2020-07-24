@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <!-- 画面 -->
+  <phps>
+    <function token="938AF062-9B89-9A41-0AAB-E58283847B4E" menu="common" act="home" name="首页" auth="1" />
+  </phps>
+  <!-- API -->
+  <apis>
+    <function token="93EEEFD3-3DCD-A16A-B295-2AF8819E7DB6" menu="user_api" act="login" name="用户登录请求" auth="1"/>
+  </apis>
+</root>
