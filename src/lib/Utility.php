@@ -131,20 +131,20 @@ class Utility
 
     public static function sendToPhone($phone, $code, $template)
     {
-        if ($_SERVER['SERVER_ADDR'] == '127.0.0.1') {
+        if (TEST_STATUS) {
             return true;
         }
-        require_once SRC_PATH . "/driver/aliyun-dysms-php-sdk/Message.php";
+        require_once SRC_PATH . "/ext/aliyun-dysms-php-sdk/Message.php";
         $result = Message::sendSms($phone, $code, $template);
         return $result->Code == "OK";
     }
 
     public static function sendToMail($mail_address, $title, $content)
     {
-        if ($_SERVER['SERVER_ADDR'] == '127.0.0.1') {
+        if (TEST_STATUS) {
             return true;
         }
-        require_once SRC_PATH . "/library/Mailer.php";
+        require_once SRC_PATH . "/ext/PHPMailer/Mailer.php";
         $mailer = Mailer::getInstance();
         return $mailer->send($mail_address, $title, $content);
     }
@@ -201,16 +201,8 @@ class Utility
         return $result;
     }
 
-    public static function encodeCookieInfo($param)
+    public static function encodeInfo($param)
     {
-        if (!is_array($param)) {
-            $param = array(
-                $param
-            );
-        }
-        foreach ($param as $key => $val) {
-            $param[$key] = urlencode($val);
-        }
         $result = base64_encode(json_encode($param));
         $result = rtrim($result, "=");
         $result = str_replace("+", "-", $result);
@@ -218,14 +210,11 @@ class Utility
         return $result;
     }
 
-    public static function decodeCookieInfo($param)
+    public static function decodeInfo($param)
     {
-        $param = str_replace("-", "+", $param);
         $param = str_replace("_", "/", $param);
+        $param = str_replace("-", "+", $param);
         $result = json_decode(base64_decode($param), true);
-        foreach ($result as $key => $val) {
-            $result[$key] = urldecode($val);
-        }
         return $result;
     }
 

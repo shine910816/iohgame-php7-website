@@ -1,2 +1,4 @@
 /temp/log/error.log
+/temp/log/sqltext.log
 /src/lib/Init2.php
+/src/ext
