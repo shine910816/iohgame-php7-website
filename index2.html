@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>关键字转换</title>
+<link type="text/css" rel="stylesheet" href="css/theme/?k=100" />
+<link type="text/css" rel="stylesheet" href="css/common.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+<!--script type="text/javascript" src="js/common.js"></script-->
+<script type="text/javascript">
+var adjustWindow = function(){
+    var windowWidth = $(window).width();
+    var windowHeight = $(window).height();
+    $(document.body).css({
+        "width":windowWidth
+    });
+    if (windowWidth > 800) {
+        // TODO
+        
+    } else {
+        // TODO
+    }
+};
+$(document).ready(function(){
+    adjustWindow();
+    $(window).on("resize", function(){
+        adjustWindow();
+    });
+});
+</script>
+</head>
+<body>
+<div class="left-panel">
+  <div class="left-max-panel"></div>
+  <div class="left-min-panel"></div>
+</div>
+<div class="right-panel">
+  <div class="top-max-panel"></div>
+  <div class="top-min-panel"></div>
+  <div class="main-panel"></div>
+</div>
+</body>
+</html>

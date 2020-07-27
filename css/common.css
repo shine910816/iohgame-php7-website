@@ -1,0 +1,22 @@
+/* 主样式表 */
+* {
+  margin:0;
+  padding:0;
+  border:0;
+  font-family:"Microsoft Yahei","Arial","SimSun";
+  font-size:14px;
+}
+body {
+  height:auto;
+}
+.undisp {
+  display:none;
+}
+.left-panel {
+  width:200px;
+  height:auto;
+}
+.left-max-panel, .left-min-panel {
+  width:100%;
+  min-height:600px;
+}
