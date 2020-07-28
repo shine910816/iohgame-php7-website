@@ -1,25 +1,62 @@
+<!-- START PAGE TOP PATTERN -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>关键字转换</title>
-<link type="text/css" rel="stylesheet" href="css/theme/?k=100" />
-<link type="text/css" rel="stylesheet" href="css/common.css" />
+<link type="text/css" rel="stylesheet" href="css/theme/?k=50" />
+<link type="text/css" rel="stylesheet" href="css/common.css?11" />
+<link type="text/css" rel="stylesheet" href="css/font-awesome.css" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
 <!--script type="text/javascript" src="js/common.js"></script-->
 <script type="text/javascript">
+var leftMinPanelOpen = false;
+var option = {
+    criticalWidth:600,
+    leftWidth:200,
+    topMaxHeight:70,
+    topMinHeight:35,
+    mainPadding:10
+};
 var adjustWindow = function(){
-    var windowWidth = $(window).width();
-    var windowHeight = $(window).height();
-    $(document.body).css({
-        "width":windowWidth
-    });
-    if (windowWidth > 800) {
+    var windows = {
+        width:$(window).width(),
+        height:$(window).height()
+    };
+    if (windows.width > option.criticalWidth) {
         // TODO
-        
+        $(".left-max-panel").removeClass("undisp");
+        $(".left-min-panel").addClass("undisp");
+        $(".top-max-panel").removeClass("undisp");
+        $(".top-min-panel").addClass("undisp");
+        $(".main-panel").css({
+            "width":windows.width - option.leftWidth - option.mainPadding * 2,
+            "left":option.leftWidth
+        });
+        $(".left-max-panel").css({
+            "top":option.topMaxHeight,
+            "left":0
+        });
     } else {
         // TODO
+        leftMinPanelOpen = false;
+        $(".left-max-panel").addClass("undisp");
+        $(".left-min-panel").removeClass("undisp");
+        $(".top-max-panel").addClass("undisp");
+        $(".top-min-panel").removeClass("undisp");
+        $(".main-panel").css({
+            "width":windows.width - option.mainPadding * 2,
+            "left":0
+        });
+        $(".left-min-panel").css({
+            "top":option.topMinHeight,
+            "left":0 - option.leftWidth,
+            "height":windows.height - option.topMinHeight
+        });
+        $(".top-min-panel-middle-box").css({
+            "width":windows.width - option.topMinHeight * 2
+        });
     }
 };
 $(document).ready(function(){
@@ -27,18 +64,48 @@ $(document).ready(function(){
     $(window).on("resize", function(){
         adjustWindow();
     });
+    $("#open-sub-menu").click(function(){
+        if (leftMinPanelOpen) {
+            leftMinPanelOpen = false;
+            $(".left-min-panel").css({
+                "left":0 - option.leftWidth
+            });
+            $(this).removeClass("selected");
+            $(this).find("i").addClass("fa-bars");
+            $(this).find("i").removeClass("fa-close");
+        } else {
+            leftMinPanelOpen = true;
+            $(".left-min-panel").css({
+                "left":0,
+            });
+            $(this).addClass("selected");
+            $(this).find("i").removeClass("fa-bars");
+            $(this).find("i").addClass("fa-close");
+        }
+    });
 });
 </script>
 </head>
 <body>
-<div class="left-panel">
-  <div class="left-max-panel"></div>
-  <div class="left-min-panel"></div>
+<div class="top-max-panel">This is top max</div>
+<div class="top-min-panel">
+  <div class="top-min-panel-left-box"><span id="open-sub-menu">&nbsp;<i class="fa fa-bars"></i>&nbsp;</span></div>
+  <div class="top-min-panel-middle-box"></div>
+  <div class="top-min-panel-right-box"><a href="">&nbsp;<i class="fa fa-user"></i>&nbsp;</a></div>
 </div>
-<div class="right-panel">
-  <div class="top-max-panel"></div>
-  <div class="top-min-panel"></div>
-  <div class="main-panel"></div>
+<div class="main-panel">
+<!-- END PAGE TOP PATTERN -->
+
+
+This is main
+
+
+<!-- START PAGE BOTTOM PATTERN -->
+</div>
+<div class="left-panel">
+  <div class="left-max-panel">This is left max</div>
+  <div class="left-min-panel">This is left min</div>
 </div>
 </body>
 </html>
+<!-- END PAGE BOTTOM PATTERN -->

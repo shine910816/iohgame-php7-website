@@ -5,18 +5,61 @@
   border:0;
   font-family:"Microsoft Yahei","Arial","SimSun";
   font-size:14px;
+  appearance:none;
+  -webkit-appearance:none;
+  text-decoration:none;
 }
 body {
+  min-width:300px;
   height:auto;
 }
 .undisp {
   display:none;
 }
-.left-panel {
-  width:200px;
-  height:auto;
-}
-.left-max-panel, .left-min-panel {
+/* 顶部 */
+.top-max-panel,
+.top-min-panel {
   width:100%;
-  min-height:600px;
+}
+.top-max-panel {
+  height:70px;
+}
+.top-min-panel {
+  height:35px;
+}
+.top-min-panel-left-box,
+.top-min-panel-middle-box,
+.top-min-panel-right-box {
+  height:35px;
+  float:left;
+}
+.top-min-panel-left-box,
+.top-min-panel-right-box {
+  width:35px;
+}
+.top-min-panel .top-min-panel-left-box span,
+.top-min-panel .top-min-panel-right-box a {
+  display:block;
+  width:29px;
+  height:29px;
+  margin:3px;
+  text-align:center;
+  line-height:29px;
+  color:inhert;
+}
+/* 左边 */
+.left-max-panel,
+.left-min-panel {
+  width:200px;
+  height:200px;
+  position:absolute;
+}
+.left-min-panel {
+  top:35px;
+}
+/* 右边 */
+.main-panel {
+  padding:10px;
+  background-color:#FFFFFF;
+  position:absolute;
 }

@@ -2,12 +2,12 @@
 // 动态CSS
 header("Content-type:text/css; charset=utf-8");
 $theme_data = array(
-    "1" => explode(",", "4D683F,8E9A76,B29887,D3C499"),
-    "5" => explode(",", "A18AB4,8EACC6,D592B1,ECDFBF"),
-    "10" => explode(",", "97B495,C9B0AB,636F85,CBA9C4"),
-    "20" => explode(",", "805F56,EDD8BD,8AA47D,9FBBD1"),
-    "50" => explode(",", "686882,A799B2,6A8E8C,94BEB2"),
-    "100" => explode(",", "AD79A0,DB657F,C57E8C,E2C080")
+    "1"   => array("4D683F", "8E9A76", "B29887", "D3C499"),
+    "5"   => array("A18AB4", "8EACC6", "D592B1", "ECDFBF"),
+    "10"  => array("97B495", "C9B0AB", "636F85", "CBA9C4"),
+    "20"  => array("805F56", "EDD8BD", "8AA47D", "9FBBD1"),
+    "50"  => array("686882", "A799B2", "6A8E8C", "94BEB2"),
+    "100" => array("AD79A0", "DB657F", "C57E8C", "E2C080")
 );
 $theme_key = "100";
 if (isset($_GET["k"]) && isset($theme_data[$_GET["k"]])) {
@@ -44,4 +44,15 @@ function getOppoColor($color) {
 /* 动态主题样式表 - <?php echo $theme_key; ?>号模板 */
 body, .left-max-panel, .left-min-panel {
   background-color:#<?php echo $theme_block[0]; ?>;
+}
+.top-max-panel, .top-min-panel {
+  background-color:#<?php echo $theme_block[2]; ?>;
+}
+.top-min-panel .top-min-panel-left-box span,
+.top-min-panel .top-min-panel-right-box a {
+  color:#<?php echo getOppoColor($theme_block[2]); ?>;
+}
+.top-min-panel .selected {
+  background-color:#<?php echo $theme_block[3]; ?>;
+  color:#<?php echo getOppoColor($theme_block[3]); ?>;
 }
