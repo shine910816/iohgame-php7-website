@@ -42,7 +42,7 @@ function getOppoColor($color) {
 //}
 ?>
 /* 动态主题样式表 - <?php echo $theme_key; ?>号模板 */
-body, .left-max-panel, .left-min-panel {
+body, .left-max-panel, .left-min-panel .menu-list {
   background-color:#<?php echo $theme_block[0]; ?>;
 }
 .top-max-panel, .top-min-panel {
